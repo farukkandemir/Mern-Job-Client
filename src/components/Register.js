@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-
+import {useNavigate} from "react-router-dom";
 import {app} from "../utils/axiosConfig";
 
 function Register() {
@@ -8,6 +8,8 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
+
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -19,7 +21,7 @@ function Register() {
     });
     result.data && setMsg(result.data.msg);
     setInterval(() => {
-      window.location.replace("/login");
+      navigate("/login");
     }, 2000);
   }
 
