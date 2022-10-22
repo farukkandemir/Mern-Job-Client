@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, {useContext, useEffect, useRef} from "react";
 import {Context} from "../context/Context";
 import {app} from "../utils/axiosConfig";
@@ -16,7 +15,7 @@ function Jobs() {
 
   async function handleAdd(e) {
     e.preventDefault();
-    const result = await app.post("http://localhost:4000/api/users/jobs", {
+    const result = await app.post("/api/users/jobs", {
       company: companyRef.current.value,
       position: positionRef.current.value,
       username: user.username,
@@ -71,9 +70,9 @@ function Jobs() {
         </form>
       </div>
 
-      {jobs.length !== 0 ? (
+      {jobs?.length !== 0 ? (
         <article className="grid grid-cols-3 gap-2 mt-5 h-full">
-          {jobs.map((job, index) => (
+          {jobs?.map((job, index) => (
             <Job key={index} job={job} id={job._id} />
           ))}
         </article>
